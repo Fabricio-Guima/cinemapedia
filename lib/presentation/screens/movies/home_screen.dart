@@ -1,5 +1,6 @@
 import 'package:cinemapedia/presentation/providers/movies/movies_providers.dart';
 import 'package:cinemapedia/presentation/providers/movies/movies_slideshow_provider.dart';
+import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -33,14 +34,19 @@ class _HomeViewState extends ConsumerState<_HomeView> {
     ref.read(nowPlayingProvider.notifier).loadNextPage();
     ref.read(popularProvider.notifier).loadNextPage();
     ref.read(topRatedProvider.notifier).loadNextPage();
+    ref.read(upcomingProvider.notifier).loadNextPage();
   }
   @override
   Widget build(BuildContext context) {
+
+    final initialLoading = ref.watch(initialLoginLoadingProvider);
+    if(initialLoading) return const FullScreenLoader();
 
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
     final nowPlayingMovies = ref.watch(nowPlayingProvider);
     final popularMovies = ref.watch(popularProvider);
     final topRatedMovies = ref.watch(topRatedProvider);
+    final upcomingMovies = ref.watch(upcomingProvider);  
     
     return CustomScrollView(
       slivers: [
@@ -68,11 +74,11 @@ class _HomeViewState extends ConsumerState<_HomeView> {
           ),
       
           MovieHorizontalListview(
-            movies: nowPlayingMovies,
+            movies: upcomingMovies,
             title: 'Coming Soon',
             subtitle: 'Saturday 20',
             loadNextPage: () {
-              ref.read(nowPlayingProvider.notifier).loadNextPage();
+              ref.read(upcomingProvider.notifier).loadNextPage();
             },
           ),
       

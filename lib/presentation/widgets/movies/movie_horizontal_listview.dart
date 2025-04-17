@@ -71,7 +71,7 @@ class _MovieHorizontalListviewState extends State<MovieHorizontalListview> {
                       child: Center(child: CircularProgressIndicator()),
                     );
                   }
-                  return _Slide(movie: widget.movies[index]);
+                  return FadeInRight(child: _Slide(movie: widget.movies[index]));
               }
             ),
           ),          
