@@ -35,29 +35,68 @@ class _HomeViewState extends ConsumerState<_HomeView> {
   @override
   Widget build(BuildContext context) {
 
-    // final nowPlayingMovies = ref.watch(nowPlayingProvider);
+    final nowPlayingMovies = ref.watch(nowPlayingProvider);
     final slideShowMovies = ref.watch(moviesSlideshowProvider);
     
-    return Column(
-      children: [
-
-        const CustomAppbar(),
-
-
-        MoviesSlideshow(movies: slideShowMovies),
-
-        // Expanded(
-        //   child: ListView.builder(
-        //     itemCount: nowPlayingMovies.length,
-        //     itemBuilder: (context, index) {
-        //     final movie = nowPlayingMovies[index];
-        //     return ListTile(
-        //       title: Text(movie.title),
-        //       );
-        //     },
-        //   ),
-        // ),
+    return CustomScrollView(
+      slivers: [
+        const SliverAppBar(
+          floating: true,         
+            title: CustomAppbar(),          
+        ),
+        SliverList(delegate: SliverChildBuilderDelegate(
+          (context, index)  {
+            return       Column(
+        children: [
+      
+          // const CustomAppbar(),
+      
+      
+          MoviesSlideshow(movies: slideShowMovies),
+      
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Now in Theaters',
+            subtitle: 'Monday 5',
+            loadNextPage: () { 
+              ref.read(nowPlayingProvider.notifier).loadNextPage();
+              },
+          ),
+      
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Coming Soon',
+            subtitle: 'Saturday 20',
+            loadNextPage: () {
+              ref.read(nowPlayingProvider.notifier).loadNextPage();
+            },
+          ),
+      
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Popular',
+            // subtitle: 'Sunday 20',
+            loadNextPage: () {
+              ref.read(nowPlayingProvider.notifier).loadNextPage();
+            },
+          ),
+      
+          MovieHorizontalListview(
+            movies: nowPlayingMovies,
+            title: 'Top Rated Movies',
+            // subtitle: 'Sunday 20',
+            loadNextPage: () {
+              ref.read(nowPlayingProvider.notifier).loadNextPage();
+            },
+          ),
+          const SizedBox(height: 10)
+        ]
+      );
+          },
+          childCount: 1
+        )),
       ]
+
     );
   }
 }
