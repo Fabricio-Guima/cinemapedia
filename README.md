@@ -90,9 +90,9 @@ flutter build ios            # Para iOS
 * Dart 3.0.0 ou superior
 * Uma chave de API válida do TMDB
 
-## 🤝 Contribuição
+## 📸 Capturas de Tela
 
-Contribuições são bem-vindas! Sinta-se à vontade para abrir issues ou enviar pull requests.
+<img src="screenshots/tela_inicial.jpeg" width="250">
 
 ## 📄 Licença
 
