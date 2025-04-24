@@ -92,7 +92,7 @@ flutter build ios            # Para iOS
 
 ## 📸 Capturas de Tela
 
-<img src="screenshots/tela_inicial.jpeg" width="250">
+<img src="screenshots/tela_inicial.jpeg" width="250"> <img src="screenshots/tela_filme_detalhes.jpeg" width="250"> <img src="screenshots/tela_filme_detalhes_atores.jpeg" width="250">
 
 ## 📄 Licença
 
