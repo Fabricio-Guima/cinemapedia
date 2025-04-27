@@ -16,7 +16,7 @@ class MovieMapper {
       popularity: moviedb.popularity,
       posterPath: (moviedb.posterPath != '')
         ? 'https://image.tmdb.org/t/p/w500/${ moviedb.backdropPath }'
-        : 'no-poster',
+        : 'ttps://fireteller.com.au/wp-content/uploads/2020/09/Poster_Not_Available2.jpg',
       releaseDate: moviedb.releaseDate,
       title: moviedb.title,
       video: moviedb.video,
